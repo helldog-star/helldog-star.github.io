@@ -17,21 +17,25 @@ const posts = (await getCollection('writing')).sort(
     </header>
 
     <section class="section">
-      <ul class="writing">
-        {
-          posts.map((post) => (
-            <li>
-              <span class="when">
-                {post.data.date.toISOString().slice(0, 7).replace('-', '.')}
-              </span>
-              <span class="title">
-                <a href={`/writing/${post.id}/`}>{post.data.title}</a>
-                <span class="excerpt">{post.data.excerpt}</span>
-              </span>
-            </li>
-          ))
-        }
-      </ul>
+      {
+        posts.length > 0 ? (
+          <ul class="writing">
+            {posts.map((post) => (
+              <li>
+                <span class="when">
+                  {post.data.date.toISOString().slice(0, 7).replace('-', '.')}
+                </span>
+                <span class="title">
+                  <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+                  <span class="excerpt">{post.data.excerpt}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="empty">还没有开始写。等有真想清楚的事，再放上来。</p>
+        )
+      }
     </section>
   </div>
 </Base>

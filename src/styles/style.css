@@ -346,6 +346,13 @@ a:hover { color: var(--accent); border-bottom-color: var(--accent); }
   color: var(--muted);
 }
 
+/* 空状态（例如还没有随笔时） */
+.empty {
+  margin: 0;
+  font-size: 15.5px;
+  color: var(--faint);
+}
+
 /* ─── about / timeline ───────────────────────────────────── */
 .timeline { display: grid; gap: 15px; }
 .tl-item {

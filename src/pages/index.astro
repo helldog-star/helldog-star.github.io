@@ -115,26 +115,28 @@ const coAuthor = site.publications.filter((p) => p.role === 'co-author');
       </div>
     </section>
 
-    <!-- ═══ Writing ═══ -->
-    <section class="section" id="writing">
-      <h2 class="section-title">Writing</h2>
-      <ul class="writing">
-        {
-          posts.map((post) => (
-            <li>
-              <span class="when">
-                {post.data.date.toISOString().slice(0, 7).replace('-', '.')}
-              </span>
-              <span class="title">
-                <a href={`/writing/${post.id}/`}>{post.data.title}</a>
-                <span class="excerpt">{post.data.excerpt}</span>
-              </span>
-            </li>
-          ))
-        }
-      </ul>
-      <a class="more" href="/writing/">全部随笔 →</a>
-    </section>
+    <!-- ═══ Writing ═══ （没有随笔时整块不渲染） -->
+    {
+      posts.length > 0 && (
+        <section class="section" id="writing">
+          <h2 class="section-title">Writing</h2>
+          <ul class="writing">
+            {posts.map((post) => (
+              <li>
+                <span class="when">
+                  {post.data.date.toISOString().slice(0, 7).replace('-', '.')}
+                </span>
+                <span class="title">
+                  <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+                  <span class="excerpt">{post.data.excerpt}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <a class="more" href="/writing/">全部随笔 →</a>
+        </section>
+      )
+    }
 
     <!-- ═══ About ═══ -->
     <section class="section" id="about">
