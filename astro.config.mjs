@@ -2,8 +2,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // ⚠️ 部署前改成你的真实域名（影响 canonical URL、sitemap、RSS）
-  site: 'https://xinyuliu.example',
+  // 用户主页仓库 helldog-star.github.io —— 部署在根路径，不需要设 base
+  site: 'https://helldog-star.github.io',
 
   // 目录式 URL：/writing/xxx/ 而不是 /writing/xxx.html
   build: { format: 'directory' },
