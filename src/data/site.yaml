@@ -66,6 +66,14 @@ research:
 # 作者列表来自 ACL Anthology 与 arXiv 的官方元数据（citation_author），
 # 非手写。渲染时站点会自动把自己的名字加粗。
 publications:
+  - title: "Towards Robust Aspect-based Sentiment Analysis through Non-counterfactual Augmentations"
+    authors: "Xinyu Liu, Yan Ding, Kaikai An, Chunyang Xiao, Pranava Madhyastha, Tong Xiao, Jingbo Zhu"
+    venue: arXiv preprint
+    year: 2023
+    role: first-author
+    status: published
+    link: "https://arxiv.org/abs/2306.13971"
+
   - title: "Forgetting Curve: A Reliable Method for Evaluating Memorization Capability for Long-Context Models"
     authors: "Xinyu Liu, Runsong Zhao, Pengcheng Huang, Chunyang Xiao, Bei Li, Jingang Wang, Tong Xiao, JingBo Zhu"
     venue: EMNLP 2024
@@ -129,6 +137,30 @@ publications:
     role: co-author
     status: published
     link: "https://arxiv.org/abs/2606.03768"
+
+  - title: "MTR-Suite: A Framework for Evaluating and Synthesizing Conversational Retrieval Benchmarks"
+    authors: "Junhao Ruan, Abudukeyumu Abudula, Bei Li, Yongjing Yin, Xinyu Liu, Kechen Jiao, Xin Chen, Jingang Wang, Xunliang Cai, Tong Xiao, JingBo Zhu"
+    venue: ACL 2026
+    year: 2026
+    role: co-author
+    status: published
+    link: "https://aclanthology.org/2026.acl-long.1726/"
+
+  - title: "TCPO: Thought-Centric Preference Optimization for Effective Embodied Decision-making"
+    authors: "Kechen Jiao, Zhirui Fang, Jiahao Liu, Bei Li, Qifan Wang, Xinyu Liu, Junhao Ruan, Zhongjian Qiao, Yifan Zhu, Yaxin Xu, Jingang Wang, Xiu Li"
+    venue: EMNLP 2025
+    year: 2025
+    role: co-author
+    status: published
+    link: "https://aclanthology.org/2025.emnlp-main.484/"
+
+  - title: "NDP: Next Distribution Prediction as a More Broad Target"
+    authors: "Junhao Ruan, Abudukeyumu Abudula, Xinyu Liu, Bei Li, Yinqiao Li, Chenglong Wang, Yuchun Fan, Yuan Ge, Tong Xiao, Jingbo Zhu"
+    venue: arXiv preprint
+    year: 2024
+    role: co-author
+    status: published
+    link: "https://arxiv.org/abs/2408.17377"
 
 # 星标数与语言取自 GitHub API，非手写。
 projects:

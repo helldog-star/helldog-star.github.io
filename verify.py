@@ -56,7 +56,7 @@ with sync_playwright() as p:
         print(f"  {label:12s} {url:38s} HTTP {r.status}")
 
     print("\n=== 4. 筛选交互 ===")
-    for f, expect in (("all", 8), ("first-author", 4), ("co-author", 4), ("review", 1)):
+    for f, expect in (("all", 12), ("first-author", 5), ("co-author", 7), ("review", 1)):
         pg.click(f'.chip[data-filter="{f}"]')
         pg.wait_for_timeout(120)
         vis = pg.eval_on_selector_all(".pub", "els => els.filter(e => e.style.display !== 'none').length")
