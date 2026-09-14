@@ -1,0 +1,176 @@
+# ============================================================
+# 站点内容源 —— 个人主页的唯一数据源。
+# 加一篇论文 / 一条动态 / 一个项目，只改这里。
+# 字段写错或漏字段，构建时会被 Zod 拦下来（见 src/lib/site.ts）。
+# ============================================================
+
+author:
+  name_zh: 刘新宇
+  name_en: Xinyu Liu
+  role: 博士研究生 · 长上下文记忆与高效推理
+  affil: 东北大学 · 自然语言处理实验室
+  bio: >-
+    我在东北大学自然语言处理实验室做博士研究，关心大模型如何<strong>长久地记住</strong>、
+    如何<strong>更省地推理</strong>，以及如何在复杂任务上学会规划。大部分时间花在长上下文记忆评测、
+    上下文压缩与推理加速、以及推理后训练这三件事上。
+  links:
+    - label: Email
+      url: "mailto:lxy1051493182@gmail.com"
+    - label: Google Scholar
+      url: "https://scholar.google.com/citations?user=yOrBnNkAAAAJ&hl=zh-CN"
+    - label: GitHub
+      url: "https://github.com/helldog-star"
+    - label: CV
+      url: "/cv.pdf"
+
+news:
+  - when: "2026.08"
+    what: "<b>TGPO</b> 代码开源，论文见 EMNLP 2026 Findings。"
+  - when: "2026.07"
+    what: "<b>MemoSight</b> 官方实现开源：统一上下文压缩与多 token 预测。"
+  - when: "2026.06"
+    what: "<b>HybridThinker</b> 预印本上线（EMNLP 2026）。"
+  - when: "2026.01"
+    what: "<b>SpanNorm</b> 预印本上线（ICML 2026）。"
+  - when: "2025.11"
+    what: "<b>IIET</b> 发表于 EMNLP 2025 主会，代码同步开源。"
+  - when: "2024.11"
+    what: "<b>Forgetting Curve</b> 发表于 EMNLP 2024 主会。"
+
+research:
+  - idx: "01"
+    title: 长上下文记忆，到底该怎么量
+    tag: 评测 · Forgetting Curve (EMNLP 2024)
+    body: >-
+      大海捞针和 LongBench 这类评测高度依赖指令遵循，只能验证片段检索，量不出真实的有效记忆长度。
+      我们用复制准确率与语言模型准确率双曲线把「纯记忆」和「理解」解耦，刻画模型的记忆衰减规律。
+  - idx: "02"
+    title: 上下文压缩与长推理加速
+    tag: 效率 · SAC / EPL / MemoSight
+    body: >-
+      Agent 长链路执行时 KV 缓存随步长线性膨胀。我们放弃自编码重建范式，直接用语义锚点聚合全局语义，
+      并把 KV 压缩与多 token 预测融进同一个共享架构。
+  - idx: "03"
+    title: Transformer 架构与训练稳定性
+    tag: 架构 · IIET / SpanNorm
+    body: >-
+      高阶数值 Transformer 推理开销高，深层网络又卡在 PreNorm 表达不足与 PostNorm 训练不稳之间。
+      我们用迭代隐式欧拉算子简化高阶 ODE，并用跨块长残差稳定信号传播。
+  - idx: "04"
+    title: Reasoning 后训练与决策对齐
+    tag: 后训练 · TGPO / TCPO
+    body: >-
+      师生策略差距大时 Reverse KL 监督会失效。我们把 token 级教师引导与轨迹级 RLVR 奖励结合，
+      也把稀疏奖励转成稠密的分步偏好对。
+
+# 作者列表来自 ACL Anthology 与 arXiv 的官方元数据（citation_author），
+# 非手写。渲染时站点会自动把自己的名字加粗。
+publications:
+  - title: "Forgetting Curve: A Reliable Method for Evaluating Memorization Capability for Long-Context Models"
+    authors: "Xinyu Liu, Runsong Zhao, Pengcheng Huang, Chunyang Xiao, Bei Li, Jingang Wang, Tong Xiao, JingBo Zhu"
+    venue: EMNLP 2024
+    year: 2024
+    role: first-author
+    status: published
+    link: "https://aclanthology.org/2024.emnlp-main.269/"
+
+  - title: "IIET: Efficient Numerical Transformer via Implicit Iterative Euler Method"
+    authors: "Xinyu Liu, Bei Li, Jiahao Liu, Junhao Ruan, Kechen Jiao, Hongyin Tang, Jingang Wang, Tong Xiao, JingBo Zhu"
+    venue: EMNLP 2025
+    year: 2025
+    role: first-author
+    status: published
+    link: "https://aclanthology.org/2025.emnlp-main.453/"
+
+  - title: "Teacher-Guided Policy Optimization for On-Policy Reasoning Distillation under Large Policy Divergence"
+    authors: "Xinyu Liu, Kechen Jiao, Chunyang Xiao, Runsong Zhao, Junhao Ruan, Bei Li, Jiahao Liu, Qifan Wang, Xin Chen, Jingang Wang, Chenglong Wang, Tong Xiao, JingBo Zhu"
+    venue: EMNLP 2026 Findings
+    year: 2026
+    role: first-author
+    status: published
+    link: "https://arxiv.org/abs/2605.13230"
+
+  - title: "MemoSight: Unifying Context Compression and Multi Token Prediction for Reasoning Acceleration"
+    authors: "Xinyu Liu, Xin Liu, Bo Jin, Runsong Zhao, Pengcheng Huang, Junhao Ruan, Bei Li, Chunyang Xiao, Chenglong Wang, Tong Xiao, Jingbo Zhu"
+    venue: Under Review
+    year: 2026
+    role: first-author
+    status: review
+    link: "https://arxiv.org/abs/2604.14889"
+
+  - title: "SpanNorm: Reconciling Training Stability and Performance in Deep Transformers"
+    authors: "Chao Wang, Bei Li, Jiaqi Zhang, Xinyu Liu, Yuchun Fan, Linkun Lyu, Xin Chen, Jingang Wang, Tong Xiao, Peng Pei, Xunliang Cai"
+    venue: ICML 2026
+    year: 2026
+    role: co-author
+    status: published
+    link: "https://arxiv.org/abs/2601.22580"
+
+  - title: "Autoencoding-Free Context Compression for LLMs via Contextual Semantic Anchors"
+    authors: "Xin Liu, Runsong Zhao, Pengcheng Huang, Xinyu Liu, Junyi Xiao, Chunyang Xiao, Tong Xiao, Shengxiang Gao, Zhengtao Yu, Jingbo Zhu"
+    venue: ICLR 2026
+    year: 2026
+    role: co-author
+    status: published
+    link: "https://arxiv.org/abs/2510.08907"
+
+  - title: "Position IDs Matter: An Enhanced Position Layout for Efficient Context Compression in Large Language Models"
+    authors: "Runsong Zhao, Xin Liu, Xinyu Liu, Pengcheng Huang, Chunyang Xiao, Tong Xiao, JingBo Zhu"
+    venue: EMNLP 2025 Findings
+    year: 2025
+    role: co-author
+    status: published
+    link: "https://aclanthology.org/2025.findings-emnlp.962/"
+
+  - title: "HybridThinker: Efficient Chain-of-Thought Reasoning via Compressed Memory and Transient Thought Steps"
+    authors: "Xin Liu, Runsong Zhao, Xinyu Liu, Junhao Ruan, Pengcheng Huang, Shichao Dong, Chunyang Xiao, Chenglong Wang, Changliang Li, Jingbo Zhu, Tong Xiao"
+    venue: EMNLP 2026
+    year: 2026
+    role: co-author
+    status: published
+    link: "https://arxiv.org/abs/2606.03768"
+
+# 星标数与语言取自 GitHub API，非手写。
+projects:
+  - name: MemoSight
+    repo: helldog-star/MemoSight
+    lang: Python
+    stars: 3
+    body: 统一上下文压缩与多 token 预测的推理加速框架，官方 PyTorch 实现。
+  - name: TGPO
+    repo: helldog-star/TGPO
+    lang: Python
+    stars: 2
+    body: 教师引导策略优化，面向大策略分歧下的 on-policy 推理蒸馏。
+  - name: RRcot
+    repo: helldog-star/RRcot
+    lang: Python
+    stars: 5
+    body: 长 CoT 推理的上下文压缩实验框架（LightThinker / AnLLM），含 EPL 位置布局与 MTP 配置。
+  - name: OPRD
+    repo: helldog-star/OPRD
+    lang: Python
+    stars: 1
+    body: 表征级 on-policy 蒸馏，支持跨架构与跨词表，构建在 OPD 训练栈之上。
+  - name: IIET
+    repo: helldog-star/IIET
+    lang: Python
+    stars: 1
+    body: 迭代隐式欧拉 Transformer 的官方实现（EMNLP 2025）。
+
+timeline:
+  - year: "2020.09 – 2027.06"
+    what: "<b>东北大学 · 计算机科学与技术 · 博士</b>（硕博连读）"
+    place: 导师：朱靖波教授、肖桐教授
+  - year: "2024.04 – 2026.01"
+    what: "<b>美团 · Foundation Model Group</b> · 研究实习生"
+    place: 长上下文记忆、高效推理架构、Reasoning 后训练、模型架构创新
+  - year: "2022.09 – 至今"
+    what: "<b>NEUNLP 高效算法研究组</b> · 小组负责人"
+    place: 统筹长上下文评测与压缩方向的科研讨论与实验设计
+  - year: "2022.07 – 2022.09"
+    what: "<b>网易 · 伏羲 AI Lab</b> · NLP 算法实习生"
+    place: AI NPC 对话系统全链路
+  - year: "2014.09 – 2018.06"
+    what: "<b>东北大学 · 软件工程 · 本科</b>"
+    place: ""

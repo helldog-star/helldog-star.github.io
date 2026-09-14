@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../lib/site';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('writing')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base title={`随笔 · ${site.author.name_zh}`} description="关于长上下文、推理效率与模型架构的一些想法。">
+  <div class="wrap">
+    <header class="masthead">
+      <h1>随笔<span class="latin">Writing</span></h1>
+      <p class="role">关于长上下文、推理效率与模型架构的一些想法</p>
+      <nav class="links"><a href="/">← 返回主页</a></nav>
+    </header>
+
+    <section class="section">
+      <ul class="writing">
+        {
+          posts.map((post) => (
+            <li>
+              <span class="when">
+                {post.data.date.toISOString().slice(0, 7).replace('-', '.')}
+              </span>
+              <span class="title">
+                <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+                <span class="excerpt">{post.data.excerpt}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Base>

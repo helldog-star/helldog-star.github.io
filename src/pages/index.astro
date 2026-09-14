@@ -1,0 +1,192 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, highlightSelf } from '../lib/site';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('writing')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const firstAuthor = site.publications.filter((p) => p.role === 'first-author');
+const coAuthor = site.publications.filter((p) => p.role === 'co-author');
+---
+
+<Base
+  title={`${site.author.name_zh} · ${site.author.name_en}`}
+  description={`${site.author.name_zh}（${site.author.name_en}），${site.author.affil}。研究方向：长上下文记忆、上下文压缩与推理加速、Transformer 架构、Reasoning 后训练。`}
+>
+  <div class="wrap">
+    <!-- ═══ Hero ═══ -->
+    <header class="masthead">
+      <div class="masthead-text">
+        <h1>{site.author.name_zh}<span class="latin">{site.author.name_en}</span></h1>
+        <p class="role">{site.author.role}</p>
+        <p class="affil">{site.author.affil}</p>
+        <p class="bio" set:html={site.author.bio}></p>
+        <nav class="links" aria-label="联系方式">
+          {site.author.links.map((l) => <a href={l.url}>{l.label}</a>)}
+        </nav>
+      </div>
+      <img
+        class="portrait"
+        src="/portrait.jpg"
+        alt={site.author.name_zh}
+        width="148"
+        height="148"
+      />
+    </header>
+
+    <!-- ═══ News ═══ -->
+    <section class="section" id="news">
+      <h2 class="section-title">News</h2>
+      <ul class="news">
+        {
+          site.news.map((n) => (
+            <li>
+              <span class="when">{n.when}</span>
+              <span class="what" set:html={n.what} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- ═══ Research ═══ -->
+    <section class="section" id="research">
+      <h2 class="section-title">Research</h2>
+      <div class="research">
+        {
+          site.research.map((r) => (
+            <article class="research-item">
+              <span class="idx">{r.idx}</span>
+              <h3>{r.title}</h3>
+              <p>{r.body}</p>
+              <p class="tag">{r.tag}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ═══ Publications ═══ -->
+    <section class="section" id="publications">
+      <h2 class="section-title">Publications</h2>
+      <p class="section-note">
+        第一作者 {firstAuthor.length} 篇 · 合作 {coAuthor.length} 篇 · 共 {site.publications.length} 篇
+      </p>
+
+      <div class="pub-filters" role="group" aria-label="按作者位次筛选">
+        <button class="chip is-active" data-filter="all">全部</button>
+        <button class="chip" data-filter="first-author">第一作者</button>
+        <button class="chip" data-filter="co-author">合作</button>
+        <button class="chip" data-filter="review">在投</button>
+      </div>
+
+      <div class="pub-list">
+        {
+          site.publications.map((p) => (
+            <article class="pub" data-role={p.role} data-status={p.status}>
+              <div class="pub-head">
+                <h3 class="pub-title">
+                  <a href={p.link} target="_blank" rel="noopener">{p.title}</a>
+                </h3>
+                <span class:list={['venue', p.status === 'review' && 'is-review']}>{p.venue}</span>
+              </div>
+              <p class="pub-meta"><span class:list={['role', p.role === 'first-author' && 'is-first']}>{p.role === 'first-author' ? '第一作者' : '合作作者'}</span>{' '}<span set:html={highlightSelf(p.authors)} /></p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ═══ Projects ═══ -->
+    <section class="section" id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects">
+        {
+          site.projects.map((p) => (
+            <article class="project">
+              <h3><a href={`https://github.com/${p.repo}`} target="_blank" rel="noopener">{p.name}</a></h3>
+              <span class="stars">{p.lang} · ★ {p.stars}</span>
+              <p>{p.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ═══ Writing ═══ -->
+    <section class="section" id="writing">
+      <h2 class="section-title">Writing</h2>
+      <ul class="writing">
+        {
+          posts.map((post) => (
+            <li>
+              <span class="when">
+                {post.data.date.toISOString().slice(0, 7).replace('-', '.')}
+              </span>
+              <span class="title">
+                <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+                <span class="excerpt">{post.data.excerpt}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="more" href="/writing/">全部随笔 →</a>
+    </section>
+
+    <!-- ═══ About ═══ -->
+    <section class="section" id="about">
+      <h2 class="section-title">About</h2>
+      <ul class="timeline">
+        {
+          site.timeline.map((t) => (
+            <li class="tl-item">
+              <span class="tl-year">{t.year}</span>
+              <div class="tl-body">
+                <div set:html={t.what} />
+                {t.place && <div class="place">{t.place}</div>}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>{site.author.name_zh} · {site.author.name_en}</p>
+      <p>
+        {
+          site.author.links.map((l, i) => (
+            <>
+              {i > 0 && ' · '}
+              <a href={l.url}>{l.label}</a>
+            </>
+          ))
+        }
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // 论文筛选。Astro 会把这个 script 打包并只在这页注入。
+    const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip'));
+    const pubs = Array.from(document.querySelectorAll<HTMLElement>('.pub'));
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+        const f = chip.dataset.filter;
+        pubs.forEach((p) => {
+          const show =
+            f === 'all' ||
+            (f === 'review' ? p.dataset.status === 'review' : p.dataset.role === f);
+          p.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</Base>

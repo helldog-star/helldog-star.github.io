@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('writing');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+interface Props {
+  post: CollectionEntry<'writing'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Base title={`${post.data.title} · 刘新宇`} description={post.data.excerpt}>
+  <div class="wrap">
+    <article class="article">
+      <a class="back" href="/writing/">← 全部随笔</a>
+      <h1>{post.data.title}</h1>
+      <p class="meta">{post.data.date.toISOString().slice(0, 10).replace(/-/g, '.')}</p>
+      <div class="body"><Content /></div>
+    </article>
+  </div>
+</Base>
