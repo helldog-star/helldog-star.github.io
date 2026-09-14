@@ -31,8 +31,8 @@ const coAuthor = site.publications.filter((p) => p.role === 'co-author');
         class="portrait"
         src="/portrait.jpg"
         alt={site.author.name_zh}
-        width="148"
-        height="148"
+        width="210"
+        height="280"
       />
     </header>
 
@@ -49,23 +49,6 @@ const coAuthor = site.publications.filter((p) => p.role === 'co-author');
           ))
         }
       </ul>
-    </section>
-
-    <!-- ═══ Research ═══ -->
-    <section class="section" id="research">
-      <h2 class="section-title">Research</h2>
-      <div class="research">
-        {
-          site.research.map((r) => (
-            <article class="research-item">
-              <span class="idx">{r.idx}</span>
-              <h3>{r.title}</h3>
-              <p>{r.body}</p>
-              <p class="tag">{r.tag}</p>
-            </article>
-          ))
-        }
-      </div>
     </section>
 
     <!-- ═══ Publications ═══ -->

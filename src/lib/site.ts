@@ -27,9 +27,6 @@ const Site = z.object({
     links: z.array(Link),
   }),
   news: z.array(z.object({ when: z.string(), what: z.string() })),
-  research: z.array(
-    z.object({ idx: z.string(), title: z.string(), tag: z.string(), body: z.string() })
-  ),
   publications: z.array(
     z.object({
       title: z.string(),

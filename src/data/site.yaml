@@ -11,8 +11,8 @@ author:
   affil: 东北大学 · 自然语言处理实验室
   bio: >-
     我在东北大学自然语言处理实验室做博士研究，关心大模型如何<strong>长久地记住</strong>、
-    如何<strong>更省地推理</strong>，以及如何在复杂任务上学会规划。大部分时间花在长上下文记忆评测、
-    上下文压缩与推理加速、以及推理后训练这三件事上。
+    如何<strong>更省地推理</strong>，以及如何在复杂任务上学会规划。大部分时间花在研究大模型记忆、
+    上下文压缩与推理加速、以及推理后训练这三件事上；最近对<strong>持续学习</strong>和 <strong>LLM agent</strong> 很感兴趣并保持关注。
   links:
     - label: Email
       url: "mailto:lxy1051493182@gmail.com"
@@ -36,32 +36,6 @@ news:
     what: "<b>IIET</b> 发表于 EMNLP 2025 主会，代码同步开源。"
   - when: "2024.11"
     what: "<b>Forgetting Curve</b> 发表于 EMNLP 2024 主会。"
-
-research:
-  - idx: "01"
-    title: 长上下文记忆，到底该怎么量
-    tag: 评测 · Forgetting Curve (EMNLP 2024)
-    body: >-
-      大海捞针和 LongBench 这类评测高度依赖指令遵循，只能验证片段检索，量不出真实的有效记忆长度。
-      我们用复制准确率与语言模型准确率双曲线把「纯记忆」和「理解」解耦，刻画模型的记忆衰减规律。
-  - idx: "02"
-    title: 上下文压缩与长推理加速
-    tag: 效率 · SAC / EPL / MemoSight
-    body: >-
-      Agent 长链路执行时 KV 缓存随步长线性膨胀。我们放弃自编码重建范式，直接用语义锚点聚合全局语义，
-      并把 KV 压缩与多 token 预测融进同一个共享架构。
-  - idx: "03"
-    title: Transformer 架构与训练稳定性
-    tag: 架构 · IIET / SpanNorm
-    body: >-
-      高阶数值 Transformer 推理开销高，深层网络又卡在 PreNorm 表达不足与 PostNorm 训练不稳之间。
-      我们用迭代隐式欧拉算子简化高阶 ODE，并用跨块长残差稳定信号传播。
-  - idx: "04"
-    title: Reasoning 后训练与决策对齐
-    tag: 后训练 · TGPO / TCPO
-    body: >-
-      师生策略差距大时 Reverse KL 监督会失效。我们把 token 级教师引导与轨迹级 RLVR 奖励结合，
-      也把稀疏奖励转成稠密的分步偏好对。
 
 # 作者列表来自 ACL Anthology 与 arXiv 的官方元数据（citation_author），
 # 非手写。渲染时站点会自动把自己的名字加粗。
@@ -179,11 +153,6 @@ projects:
     lang: Python
     stars: 5
     body: 长 CoT 推理的上下文压缩实验框架（LightThinker / AnLLM），含 EPL 位置布局与 MTP 配置。
-  - name: OPRD
-    repo: helldog-star/OPRD
-    lang: Python
-    stars: 1
-    body: 表征级 on-policy 蒸馏，支持跨架构与跨词表，构建在 OPD 训练栈之上。
   - name: IIET
     repo: helldog-star/IIET
     lang: Python
@@ -195,7 +164,7 @@ timeline:
     what: "<b>东北大学 · 计算机科学与技术 · 博士</b>（硕博连读）"
     place: 导师：朱靖波教授、肖桐教授
   - year: "2024.04 – 2026.01"
-    what: "<b>美团 · Foundation Model Group</b> · 研究实习生"
+    what: "<b>美团 · LongCat基座模型组</b> · LLM基座算法实习生"
     place: 长上下文记忆、高效推理架构、Reasoning 后训练、模型架构创新
   - year: "2022.09 – 至今"
     what: "<b>NEUNLP 高效算法研究组</b> · 小组负责人"

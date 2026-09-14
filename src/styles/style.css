@@ -66,16 +66,16 @@ a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .masthead {
   padding: 96px 0 44px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 148px;
+  grid-template-columns: minmax(0, 1fr) 210px;
   gap: 44px;
   align-items: start;
 }
 
-/* 肖像照：圆角方形，跟文字顶部对齐 */
+/* 肖像照：竖版长方形，跟文字块顶部对齐、大致等高 */
 .portrait {
   display: block;
-  width: 148px;
-  height: 148px;
+  width: 210px;
+  height: 280px;
   object-fit: cover;
   border-radius: 6px;
   border: 1px solid var(--border);
@@ -166,36 +166,6 @@ a:hover { color: var(--accent); border-bottom-color: var(--accent); }
   letter-spacing: .02em;
 }
 .news .what b { font-weight: 600; color: var(--fg); }
-
-/* ─── research ───────────────────────────────────────────── */
-.research { display: grid; gap: 30px; }
-.research-item .idx {
-  display: block;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: .1em;
-  margin-bottom: 6px;
-}
-.research-item h3 {
-  font-family: var(--serif);
-  font-size: 19px;
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 0 0 7px;
-}
-.research-item p {
-  margin: 0;
-  font-size: 15.5px;
-  color: var(--fg-soft);
-  max-width: 66ch;
-}
-.research-item .tag {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--faint);
-  letter-spacing: .04em;
-}
 
 /* ─── publications ───────────────────────────────────────── */
 .pub-filters {
@@ -450,7 +420,7 @@ a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 @media (max-width: 640px) {
   :root { --gutter: 20px; }
   .masthead { padding: 56px 0 32px; grid-template-columns: 1fr; gap: 22px; }
-  .portrait { width: 104px; height: 104px; }
+  .portrait { width: 160px; height: 213px; }
   .masthead h1 { font-size: 33px; }
   .masthead h1 .latin { display: block; margin: 4px 0 0; font-size: 22px; }
   .news li, .writing li { grid-template-columns: 1fr; gap: 2px; }

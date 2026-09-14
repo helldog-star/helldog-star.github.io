@@ -49,8 +49,7 @@ with sync_playwright() as p:
         ("CV (PDF)", "/cv.pdf"),
         ("favicon", "/favicon.svg"),
         ("portrait", "/portrait.jpg"),
-        ("随笔列表", "/writing/"),
-        ("随笔详情", "/writing/why-quantify-forgetting/"),
+        ("随笔列表（空状态）", "/writing/"),
     ]:
         r = pg.request.get(BASE + url)
         print(f"  {label:12s} {url:38s} HTTP {r.status}")
